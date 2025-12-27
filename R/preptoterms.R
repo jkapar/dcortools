@@ -198,9 +198,9 @@ preptoterms.fast <- function(prepX, prepY, n, pairwise, discreteX, discreteY, pe
       if (pairwise) {
         X <- prepX$X[cc]
         Y <- prepY$X[cc]
-        nXY <- table(X,Y)
-        nX <- rowSums(nXY)
-        nY <- colSums(nXY)
+        nXY <- as.numeric(table(X,Y))
+        nX <- as.numeric(rowSums(nXY))
+        nY <- as.numeric(colSums(nXY))
         
         aidot <-ncc - nX
         terms$adotdot <- sum(aidot * nX)
