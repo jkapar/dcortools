@@ -40,8 +40,8 @@ preptoterms.fast <- function(prepX, prepY, n, pairwise, discreteX, discreteY, pe
       Xcc <- prepX$X[cc]
       Ycc <- prepY$X[cc]
       
-      X.sort.X <- Xcc[IX0]
-      Y.sort.Y <- Ycc[IY0]
+      X.sort.X <- as.numeric(Xcc[IX0])
+      Y.sort.Y <- as.numeric(Ycc[IY0])
       
       
       sX.X <- cumsum(X.sort.X)
@@ -198,9 +198,10 @@ preptoterms.fast <- function(prepX, prepY, n, pairwise, discreteX, discreteY, pe
       if (pairwise) {
         X <- prepX$X[cc]
         Y <- prepY$X[cc]
-        nXY <- as.numeric(table(X,Y))
-        nX <- as.numeric(rowSums(nXY))
-        nY <- as.numeric(colSums(nXY))
+        nXY <- table(X,Y)
+        nXY <- as.matrix(as.numeric(nXY), nrow = nrow(tab), dimnames = dimnames(tab))
+        nX <- rowSums(nXY)
+        nY <- colSums(nXY)
         
         aidot <-ncc - nX
         terms$adotdot <- sum(aidot * nX)
