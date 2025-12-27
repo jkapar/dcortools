@@ -11,7 +11,7 @@ preptoterms.fast <- function(prepX, prepY, n, pairwise, discreteX, discreteY, pe
     terms$ncc <- n
   } else {
     cc <- intersect(prepX$cc, prepY$cc)
-    ncc <- length(cc)
+    ncc <- as.numeric(length(cc))
     terms$ncc <- ncc
   }
   
